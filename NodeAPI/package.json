@@ -1,0 +1,15 @@
+{
+  "name": "nodeapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "App.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "app": "nodemon App.js"
+  },
+  "author": "Gurjit Singh",
+  "license": "ISC"
+}
