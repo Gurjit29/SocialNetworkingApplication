@@ -8,17 +8,23 @@ exports.register = async (req,res) => {
 
     try{
 
+        const userExists = await User.findOne({email: req.body.email});
+
+        if(userExists) return res.status(403).json({
+                error: "Email is taken"
+            });
+
         req.body.password=Bcrypt.hashSync(req.body.password,10);
         var user=new User(req.body);
         var result = await user.save();
         
-        return res.status(200).send(result);
+        return res.status(200).json(result);
 
 
 
     } catch(error){
 
-        return res.status(400).send(error);
+        return res.status(400).json(error);
     }
 
 
