@@ -3,6 +3,7 @@ var morgan=require('morgan');
 var mongoose=require('mongoose');
 
 var bodyParser=require('body-parser');
+var expressValidator=require('express-validator');
 var dotenv=require('dotenv');
 
 dotenv.config();
@@ -25,6 +26,7 @@ mongoose.connection.on("error",(err) => {
 //Middleware
 // app.use(morgan("app"));
 app.use(bodyParser.json());
+app.use(expressValidator());
 app.use("/",userRoutes);
 app.use("/",authRoutes);
 
