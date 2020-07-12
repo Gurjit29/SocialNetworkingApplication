@@ -81,6 +81,13 @@ exports.loginRequired = expressJwt(
     }
     );
 
+exports.signOut=(req,res) => {
+
+    res.clearCookie("token");
+
+    res.status(200).json({message:"You have been signed out!"});
+}
+
 
 
 /**
