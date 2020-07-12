@@ -38,7 +38,7 @@ exports.registrationValidation = (req,res,next) =>{
         });
     }
 
-    //Next so that it proceeds to register if no errors are found
+    //next() so that it proceeds to register if no errors are found
     next();
 
    
