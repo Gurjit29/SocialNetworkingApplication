@@ -30,6 +30,13 @@ app.use(expressValidator());
 app.use("/",userRoutes);
 app.use("/",authRoutes);
 
+//for checking all general unautorized errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).send({error:"You are not authorized to perform this action"});
+  }
+});
+
 
 const PORT = process.env.PORT;
 

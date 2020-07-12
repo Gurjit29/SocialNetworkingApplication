@@ -5,6 +5,7 @@ var User=require('../models/user');
 var Bcrypt=require('bcryptjs');
 
 var jwt=require('jsonwebtoken');
+var expressJwt=require('express-jwt');
 
 //User Registration/signUp
 exports.register = async (req,res) => {
@@ -73,10 +74,18 @@ exports.login = (req,res) => {
     })
 }
 
+exports.loginRequired = expressJwt(
+    {
+        secret: process.env.SECRET_JWT_KEY,
+        algorithms: ['HS256']
+    }
+    );
+
 
 
 /**
  * Reference for password encryption: https://www.thepolyglotdeveloper.com/2019/02/hash-password-data-mongodb-mongoose-bcrypt/
  * Password encryption => https://www.npmjs.com/package/bcrypt
  * JSON Web token authentication => https://www.sohamkamani.com/blog/javascript/2019-03-29-node-jwt-authentication/
- */
+ *https://www.npmjs.com/package/express-jwt---middleware for protecting certain routes
+ **/
