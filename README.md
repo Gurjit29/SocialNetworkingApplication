@@ -1,1 +1,2 @@
 # QAEngineApp
+# A web-based application Question/Answer Engine App using MERN stack inspired by core functionalities of Reddit (Upvote/Downvote), Twitter (hashtags), and Stack Overflow (Comments, Select Best Answer).
