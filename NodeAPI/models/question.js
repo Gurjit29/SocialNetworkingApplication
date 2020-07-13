@@ -19,8 +19,16 @@ const questionSchema=mongoose.Schema({
     hashtags: {
         type: String,
         trim: true
-    }
+    },
+    postedBy: {
+          type: mongoose.Schema.ObjectId,
+          ref: "User"
+        }  
 }) ;
 
 module.exports=mongoose.model("Question",questionSchema);
+
+/**
+ * Reference for models : https://bezkoder.com/mongoose-one-to-many-relationship/
+ */
 

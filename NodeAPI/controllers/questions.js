@@ -3,8 +3,12 @@ var Question=require('../models/question');
 
 exports.postQuestion= (req,res) => {
 
+
     
    var question= new Question(req.body);
+
+   req.profile.password=undefined;
+   question.postedBy=req.profile;
 
    question.save( (err,question) => {
 
@@ -13,6 +17,6 @@ exports.postQuestion= (req,res) => {
     }
 
     return res.status(200).json({question});
-   });
+   }).populate("createdBy","_id name");
   
 }
