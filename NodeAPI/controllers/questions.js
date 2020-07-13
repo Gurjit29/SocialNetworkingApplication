@@ -4,8 +4,6 @@ const post = require('../../../SocialNetworkingApp/NodeAPI/models/post');
 
 exports.postQuestion= (req,res) => {
 
-
-    
    var question= new Question(req.body);
 
    //Done to provide database from being store in "Question" model
@@ -35,5 +33,7 @@ exports.getAllQuestions=(req,res) => {
         }
         return res.status(200).json({questions});
         
-    }).populate("postedBy","_id name email")
+    })
+    //populate "postedBy" field with _id name & email of post creator
+    .populate("postedBy","_id name email")
 }
