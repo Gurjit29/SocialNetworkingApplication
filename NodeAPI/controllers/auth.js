@@ -68,6 +68,8 @@ exports.login = (req,res) => {
 
         const {_id,name,email}=user;
 
+        req.currentUser=user;
+
         //return json response - will be stored in front end in browsers' local storage
         res.status(200).json({token,user:{_id,name,email}})
         
@@ -77,7 +79,9 @@ exports.login = (req,res) => {
 exports.loginRequired = expressJwt(
     {
         secret: process.env.SECRET_JWT_KEY,
-        algorithms: ['HS256']
+        algorithms: ['HS256'],
+        userProperty: "auth"
+        
     }
     );
 
@@ -87,6 +91,9 @@ exports.signOut=(req,res) => {
 
     res.status(200).json({message:"You have been signed out!"});
 }
+
+
+
 
 
 

@@ -10,6 +10,7 @@ dotenv.config();
 
 var userRoutes=require('./routes/userRoutes');
 var authRoutes=require('./routes/authRoutes');
+var questionRoutes=require('./routes/questionRoutes');
 
 const app = express()
 
@@ -24,11 +25,11 @@ mongoose.connection.on("error",(err) => {
 });
 
 //Middleware
-// app.use(morgan("app"));
 app.use(bodyParser.json());
 app.use(expressValidator());
 app.use("/",userRoutes);
 app.use("/",authRoutes);
+app.use("/",questionRoutes);
 
 //for checking all general unautorized errors
 app.use(function (err, req, res, next) {
