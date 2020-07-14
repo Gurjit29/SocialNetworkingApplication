@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 //internal imports
 import Login from './Login';
@@ -9,7 +9,8 @@ import Register from './Register';
 const MainRouter = () => {
 
         return <div>
-            <p>This is placeholder for navbar</p>
+        <Link to="/login">Login</Link>
+        <Link to="/register">Register</Link>
         <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
