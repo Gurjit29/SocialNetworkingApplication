@@ -1,11 +1,15 @@
 import React from 'react';
+import {BrowserRouter} from 'react-router-dom';
+
+//internal imports
+import MainRouter from './components/MainRouter';
 
 
 function App() {
   return (
-    <div>
-      <h2>Welcome to react frontend!</h2>
-    </div>
+    <BrowserRouter>
+    <MainRouter/>
+    </BrowserRouter>
   );
 }
 
