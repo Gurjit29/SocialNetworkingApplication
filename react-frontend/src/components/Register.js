@@ -28,13 +28,22 @@ class Register extends Component {
     //Generic reusable template for form fields
     formElement = (name) => {
 
+        
+
         return (<div className="form-group">
+            {/* convert name to Name & email to Email */}
             <label htmlFor={name}>{name.charAt(0).toUpperCase() + name.slice(1)}</label>
             <input type={name} className="form-control" id={name}
                 onChange={this.inputChangeListener(name)}
+                
+                
             />
         </div>)
 
+    }
+
+    clearForm = () => {
+        document.getElementById("registration-form").reset();
     }
 
     //Handle click on submit button and fetch data from Node API
@@ -43,7 +52,7 @@ class Register extends Component {
         
         event.preventDefault();
 
-        const { name, email, password, registrationSuccess } = this.state;
+        const { name, email, password } = this.state;
 
         const user = {
             name: name,
@@ -76,7 +85,10 @@ class Register extends Component {
                         email: "",
                         password: "",
                         registrationSuccess: true
-                    })
+                    }) ;
+
+                    //clear form on sucessfull registration
+                    this.clearForm();
                 }
             });
 
@@ -85,7 +97,7 @@ class Register extends Component {
     render() {
 
         // const {name,email,password,
-        const { name, error, registrationSuccess } = this.state;
+        const { error, registrationSuccess } = this.state;
 
         return (
             <div className="container" style={{ 'width': '60%', 'marginTop': '20px' }}>
@@ -97,7 +109,7 @@ class Register extends Component {
                     Registration Successful! Please Sign in.
                 </div>}
 
-                <form>
+                <form id="registration-form">
                     {this.formElement("name")}
                     {this.formElement("email")}
                     {this.formElement("password")}
