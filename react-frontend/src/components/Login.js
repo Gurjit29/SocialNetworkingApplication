@@ -69,11 +69,20 @@ class Login extends Component {
             })
             .catch(err => console.log(err))
             .then((data) => {
+               
 
                 if (data.error) {
                     this.setState({ error: data.error, loginSuccess: false });
                 }
                 else {
+            
+                    //Store token and user info of logged in user in browser's local storage
+                    localStorage.setItem('token',data.token);
+                    localStorage.setItem('user_id',data.user._id);
+                    localStorage.setItem('user_name',data.user.name);
+                    localStorage.setItem('user_email',data.user.email);
+
+
                     this.setState({
                         error: "",
                         email: "",
@@ -101,7 +110,7 @@ class Login extends Component {
                     {error}
                 </div>}
                 {loginSuccess && 
-                <Redirect to={LandingPage} />
+                <Redirect path="/" to={LandingPage} />
                 }
 
                 <form id="login-form">
