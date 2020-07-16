@@ -46,12 +46,12 @@ exports.login = (req,res) => {
 
         //check if email exists?
         if(error || !user) {
-            return res.status(401).json({error:"User with given email does not exist"})
+            return res.status(401).json({error:"Please enter a valid email!"})
         }
 
         //If email exists compare passwords
         if(!Bcrypt.compareSync(password, user.password)) {
-            return res.status(401).send({error: "The password and email do not match!" });
+            return res.status(401).send({error: "Please enter the correct password!" });
         }
 
         //json web token - using user id and secret key from .env file (expires in 300 sec)
