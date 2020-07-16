@@ -18,7 +18,7 @@ exports.registrationValidation = (req,res,next) =>{
     var digitRegex = /\d/;
 
     req.check("password")
-    .isLength({min: 6})
+    .isLength({min: 5})
     .withMessage("Password must be atleast 5 characters long")
     .matches(digitRegex)
     .withMessage("Password must have a digit")

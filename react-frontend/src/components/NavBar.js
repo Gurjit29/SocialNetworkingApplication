@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 const NavBar = () => {
-    return <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    return <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
 <Link className="navbar-brand" exact to="/" href= " # ">QA Engine App</Link>
 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
   <span className="navbar-toggler-icon"></span>
