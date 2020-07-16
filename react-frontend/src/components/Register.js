@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-
-
 class Register extends Component {
 
     constructor() {
@@ -17,17 +15,18 @@ class Register extends Component {
     }
 
 
+    //Event Listener for input changes
     inputChangeListener = (name) => (event) => {
-        //to make errors disappear when user is typing
 
+
+        //to make errors disappear when user is typing
         this.setState({ error: "" })
 
         this.setState({ [name.toString()]: event.target.value });
     }
 
+    //Generic reusable template for form fields
     formElement = (name) => {
-
-        //const{name,email,password}=this.state;
 
         return (<div className="form-group">
             <label htmlFor={name}>{name.charAt(0).toUpperCase() + name.slice(1)}</label>
@@ -38,10 +37,10 @@ class Register extends Component {
 
     }
 
-
+    //Handle click on submit button and fetch data from Node API
     clickSubmit = (event) => {
 
-
+        
         event.preventDefault();
 
         const { name, email, password, registrationSuccess } = this.state;
@@ -103,8 +102,16 @@ class Register extends Component {
                     {this.formElement("email")}
                     {this.formElement("password")}
                 </form>
-                <button type="button" 
-                className="btn btn-dark" onClick={this.clickSubmit}>Submit</button>
+                {error && !registrationSuccess ?
+                (
+                    <button type="button" 
+                    className="btn btn-danger" onClick={this.clickSubmit}>Submit</button>
+                ):
+                (
+                    <button type="button" 
+                    className="btn btn-dark" onClick={this.clickSubmit}>Submit</button>
+                )}
+               
             </div>
         )
     }
