@@ -43,7 +43,7 @@ class Login extends Component {
     
 
     //Handle click on submit button and fetch data from Node API
-    clickSubmit = (event) => {
+    clickSubmit =  (event) => {
 
         
         event.preventDefault();
@@ -77,19 +77,14 @@ class Login extends Component {
                 else {
             
                     //toggle state on successful login ==> set isLoggedIn to true 
-                    this.props.toggleState();
-                    //Store token and user info of logged in user in browser's local storage
-                    // localStorage.setItem('token',data.token);
-                    // localStorage.setItem('user_id',data.user._id);
-                    // localStorage.setItem('user_name',data.user.name);
-                    // localStorage.setItem('user_email',data.user.email);
-
-                    //stringy json data
                     localStorage.setItem("userInfo",JSON.stringify(data));
-
+                    this.props.toggleState();
                     
 
+                    //stringy json data
+                   
 
+                    
                     this.setState({
                         error: "",
                         email: "",

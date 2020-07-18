@@ -36,10 +36,13 @@ export const isLoggedIn = () => {
             user: {
                 _id: "5f10d8df52e773041f15c777", 
                 name: "Peter", 
-                email: "peter@gmail.com"}
+                email: "peter@gmail.com"
+            }
          */
         console.log(JSON.parse(localStorage.getItem("userInfo")).user._id)
-        return true;
+
+        //return local storage info
+        return JSON.parse(localStorage.getItem("userInfo"));
     }
     else{
         return false;
