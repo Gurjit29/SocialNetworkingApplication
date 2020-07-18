@@ -27,10 +27,25 @@ export const isLoggedIn = () => {
         return false;
     }
 
-    if(localStorage.getItem("token")){
+    if(localStorage.getItem("userInfo")){
+
+        /**
+         * Sample Data ====>
+         * 
+         * token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMTBkOGRmNTJlNzczMDQxZjE1Yzc3NyIsImlhdCI6MTU5NTA5MDA5MiwiZXhwIjoxNTk1MDkwMzkyfQ.4yh90uOSKtk_RN52L7N_1W5AvJNMojXOmOtkY9HCEMs"
+            user: {
+                _id: "5f10d8df52e773041f15c777", 
+                name: "Peter", 
+                email: "peter@gmail.com"}
+         */
+        console.log(JSON.parse(localStorage.getItem("userInfo")).user._id)
         return true;
     }
     else{
         return false;
     }
 }
+
+/**
+ * https://www.w3schools.com/js/tryit.asp?filename=tryjson_parse --convert json to JSON object and then retrieve data
+ */
