@@ -78,7 +78,8 @@ class Register extends Component {
                 if (data.error) {
                     this.setState({ error: data.error, registrationSuccess: false });
                 }
-                else {
+                else { 
+                    // this.props.toggleState("register");
                     this.setState({
                         error: "",
                         name: "",
