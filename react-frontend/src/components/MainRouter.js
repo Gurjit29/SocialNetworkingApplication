@@ -22,7 +22,7 @@ class MainRouter extends Component {
     
       toggleState = (name) => {
     
-        if(name =="signout"){
+        if(name ==="signout"){
           SignOut();
         }
         this.setState({

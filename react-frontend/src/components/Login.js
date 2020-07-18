@@ -76,7 +76,8 @@ class Login extends Component {
                 }
                 else {
             
-                    this.props.toggleState("login");
+                    //toggle state on successful login ==> set isLoggedIn to true 
+                    this.props.toggleState();
                     //Store token and user info of logged in user in browser's local storage
                     localStorage.setItem('token',data.token);
                     localStorage.setItem('user_id',data.user._id);
