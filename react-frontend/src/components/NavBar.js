@@ -40,6 +40,9 @@ class NavBar extends Component {
             {isLoggedIn().user.name.charAt(0).toUpperCase() + isLoggedIn().user.name.slice(1)}'s Profile
               </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" href=" # " to="/new/question">Ask Question!</Link>
+          </li>
           </React.Fragment>}
 
         </ul>

@@ -7,6 +7,7 @@ import Login from './Login';
 import Register from './Register';
 import Navbar from './NavBar';
 import LandingPage from './LandingPage'; 
+import Question from './Question';
 import { Component } from 'react';
 
 import {SignOut,isLoggedIn} from '../authentication/auth';
@@ -39,6 +40,7 @@ class MainRouter extends Component {
             <Route exact path="/" component= {LandingPage} />
             <Route exact path="/login" render={() => <Login toggleState={this.toggleState}/>} />
             <Route exact path="/register" render={() => <Register toggleState={this.toggleState}/>} />
+            <Route exact path="/new/question" component={Question} />
         </Switch>
         </div>
         </React.Fragment>
