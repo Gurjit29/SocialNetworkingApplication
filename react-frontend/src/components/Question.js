@@ -28,7 +28,7 @@ class Question extends Component {
 
         //to make errors disappear when user is typing
         this.setState({ error: "" })
-        // console.log("change");
+      
 
         // if(name==="hashtags"){
         //     var hashtags =[...this.state.hashtags];
@@ -42,7 +42,7 @@ class Question extends Component {
             this.setState({ [name.toString()]: event.target.value });
         }
         else {
-            // console.log("Uhmm ok , hashtags ?? ");
+           
             let hashtags = ["node", "react", "express", "tech"];
             const inputValue = event.target.value;
 
@@ -54,27 +54,26 @@ class Question extends Component {
 
             } else {
                 hashtags.map((hashtag) => {
-                    console.log("Hashtag => " + hashtag);
-                    console.log("InputVal => " + inputValue)
+                    // console.log("Hashtag => " + hashtag);
+                    // console.log("InputVal => " + inputValue)
                     const match = hashtag.includes(inputValue, 0);
                     if (match) {
                         let hashtagMatches = [...this.state.hashtagMatches];
 
                         // for(var i=0;i<hashtagMatches.length;i++){
                         //     if(!(hashtagMatches[i].equals(hashtag))){
-                            if(!hashtagMatches.includes(hashtag)) {
+                            console.log("State ==> ",this.state.hashtags);
+                            console.log("hashtag => ",hashtag);
+                           if(!this.state.hashtags.includes(hashtag)) {
                                 hashtagMatches.push(hashtag);
-                                const uniqueArr = new Set(hashtagMatches);
-                        hashtagMatches = [...uniqueArr];
-                        this.setState({ hashtagMatches });
                             }
-                        
-                        
-
-
+                                const uniqueArr = new Set(hashtagMatches);
+                                hashtagMatches = [...uniqueArr];
+                        this.setState({ hashtagMatches });
+                            
 
                     }
-                    console.log(match);
+                    // console.log(match);
                 })
 
             }
@@ -86,16 +85,19 @@ class Question extends Component {
 
         if (event.which === 13) {
             this.setState({ hashtagMatches: [] });
-            console.log(event.target.value);
+            // console.log(event.target.value);
             if (event.target.value) {
 
                 var hashtags = [...this.state.hashtags];
 
-                 if(!hashtags.includes(event.target.value)) {
+                console.log("state ==> ",hashtags);
+                console.log("event.target.value ",event.target.value);
+                if(!this.state.hashtags.includes(event.target.value)) {
                 hashtags.push(event.target.value);
+                }
                 this.setState({ hashtags });
                 document.getElementById("hashtags").value = "";
-                 }
+                 
             }
         }
     }
@@ -104,7 +106,7 @@ class Question extends Component {
 
         event.preventDefault();
 
-        console.log("You clicked=> " +  item);
+        // console.log("You clicked=> " +  item);
 
         var hashtags = [...this.state.hashtags];
 
