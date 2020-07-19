@@ -12,6 +12,7 @@ var router=express.Router();
 router.post("/question/new/:userId",loginRequired,isAuthorized,questionValidation,postQuestion);
 router.get('/questions',getAllQuestions);
 
+
 router.param("userId",storeLoggedInUser);
 
 
