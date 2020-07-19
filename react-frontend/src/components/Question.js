@@ -62,10 +62,14 @@ class Question extends Component {
 
                         // for(var i=0;i<hashtagMatches.length;i++){
                         //     if(!(hashtagMatches[i].equals(hashtag))){
-                        hashtagMatches.push(hashtag);
-                        const uniqueArr = new Set(hashtagMatches);
+                            if(!hashtagMatches.includes(hashtag)) {
+                                hashtagMatches.push(hashtag);
+                                const uniqueArr = new Set(hashtagMatches);
                         hashtagMatches = [...uniqueArr];
                         this.setState({ hashtagMatches });
+                            }
+                        
+                        
 
 
 
@@ -87,9 +91,11 @@ class Question extends Component {
 
                 var hashtags = [...this.state.hashtags];
 
+                 if(!hashtags.includes(event.target.value)) {
                 hashtags.push(event.target.value);
                 this.setState({ hashtags });
                 document.getElementById("hashtags").value = "";
+                 }
             }
         }
     }
@@ -209,11 +215,11 @@ class Question extends Component {
                     {this.formElement("title")}
                     {this.formElement("body")}
                     {this.formElement("hashtags")}
-                    <ul class="list-group">
+                    <ul className="list-group">
                         {hashtagMatches.map((matches,index) => {
 
 
-                            return <li class="list-group-item" onClick={this.listItemClickListener(matches.toString())}>{matches}</li>
+                            return <li className="list-group-item" key={index} onClick={this.listItemClickListener(matches.toString())}>{matches}</li>
 
                         })}
                     </ul>
