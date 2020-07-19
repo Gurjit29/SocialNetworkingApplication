@@ -16,10 +16,10 @@ const questionSchema=mongoose.Schema({
         type: Date,
         default: Date.now()
     } ,
-    hashtags: {
+    hashtags: [{
         type: String,
         trim: true
-    },
+    }],
     postedBy: {
           type: mongoose.Schema.ObjectId,
           ref: "User"

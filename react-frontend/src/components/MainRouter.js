@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Switch, Route} from 'react-router-dom';
+import { Switch, Route, Redirect} from 'react-router-dom';
 
 //internal imports
 import Login from './Login';
@@ -40,7 +40,9 @@ class MainRouter extends Component {
             <Route exact path="/" component= {LandingPage} />
             <Route exact path="/login" render={() => <Login toggleState={this.toggleState}/>} />
             <Route exact path="/register" render={() => <Register toggleState={this.toggleState}/>} />
-            <Route exact path="/new/question" component={Question} />
+        {this.state.loggedIn ?
+         <Route exact path={`/question/new/${isLoggedIn().user._id}`} component={Question} />
+        : <Redirect to="/login" /> }
         </Switch>
         </div>
         </React.Fragment>

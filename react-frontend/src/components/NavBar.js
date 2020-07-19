@@ -41,7 +41,8 @@ class NavBar extends Component {
               </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" href=" # " to="/new/question">Ask Question!</Link>
+            <Link className="nav-link" href=" # " to={`question/new/${isLoggedIn().user._id}`}
+            >Ask Question!</Link>
           </li>
           </React.Fragment>}
 
