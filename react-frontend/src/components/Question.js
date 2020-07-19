@@ -21,87 +21,56 @@ class Question extends Component {
 
     //Event Listener for input changes
     inputChangeListener = (name) => (event) => {
-        //storing data in state in array
-        // https://stackoverflow.com/questions/44519850/how-to-save-data-in-an-array-inside-state-in-react-js/44520155#:~:text=First%20create%20a%20copy%20of,let%20todos%20%3D%20%5B...
-
+      
         //to make errors disappear when user is typing
         this.setState({ error: "" })
 
 
-        // if(name==="hashtags"){
-        //     var hashtags =[...this.state.hashtags];
 
-        //     hashtags.push(event.target.value);
-        //     this.setState({hashtags})
-
-        // }
-        // else
         if (name !== "hashtags") {
             this.setState({ [name.toString()]: event.target.value });
         }
         else {
 
+           
             const inputValue = event.target.value;
-            // let hashtags = ["node", "react", "express", "tech","npm","instagram","web app","coding","math","biology"];
+
+            if(inputValue) {
+
             let hashtags = [];
+
+            //Load questions from backend Node API to get available hashtags
             getAllQuestions()
                 .then((data) => {
 
                     let arr = data.questions;
-                    //    console.log(arr[12].hashtags[1]);
                     arr.map((element) => {
-                        //console.log(element.hashtags);
                         element.hashtags.map((tag) => {
-                            hashtags.push(tag)
+                            //only Load unique hashtags & ignore duplicates
+                            if (hashtags.indexOf(tag) == -1)
+                                hashtags.push(tag)
                         })
                     });
 
-                    console.log("~~~~~~~~~~~~~~~~~");
-                    console.log("Hashtags loaded from backend  =====> ", hashtags);
-                    
-                // });
+                    this.setState({ hashtagMatches: [] });
 
+                    hashtags.map((hashtag) => {
 
-                console.log(hashtags);
-            // const inputValue = event.target.value;
-            // console.log("Input value is => "+inputValue);
+                        //Iterate over each hashtag in array to find if there is match
+                        
+                        const match=hashtag.substring(0, inputValue.length) === inputValue
 
+                        if (match) {
+                            let hashtagMatches = [...this.state.hashtagMatches];
 
-            // https://www.geeksforgeeks.org/substring-check-in-javascript/#:~:text=Values%20using%20JavaScript%20%3F-,Substring%20check%20in%20JavaScript,This%20method%20is%20case%20sensitive.
-            if (!inputValue) {
-
-                this.setState({ hashtagMatches: [] });
-
-            } else {
-                hashtags.map((hashtag) => {
-                    console.log("Hashtag => " + hashtag);
-                    console.log("InputVal => " + inputValue)
-                    // const match = hashtag.includes(inputValue, 0);
-                    // const match = hashtag.indexOf(inputValue) >=0
-                    const match = hashtag.search(inputValue) >= 0
-                    console.log("Match => " + match)
-                    if (match) {
-                        let hashtagMatches = [...this.state.hashtagMatches];
-
-                        // for(var i=0;i<hashtagMatches.length;i++){
-                        //     if(!(hashtagMatches[i].equals(hashtag))){
-                        // console.log("State ==> ",this.state.hashtags);
-                        // console.log("hashtag => ",hashtag);
-                        if (!this.state.hashtags.includes(hashtag)) {
                             hashtagMatches.push(hashtag);
+                        
+                            this.setState({ hashtagMatches });
                         }
-                        const uniqueArr = new Set(hashtagMatches);
-                        hashtagMatches = [...uniqueArr];
-                        this.setState({ hashtagMatches });
-                    }
-                   
-                    
-                })
-
+                    })
+                });
+        
             }
-
-        });
-            //here
         }
     }
 
@@ -109,15 +78,13 @@ class Question extends Component {
 
         if (event.which === 13) {
             this.setState({ hashtagMatches: [] });
-            // console.log(event.target.value);
+
             if (event.target.value) {
 
                 var hashtags = [...this.state.hashtags];
 
-                console.log("state ==> ", hashtags);
-                console.log("event.target.value ", event.target.value);
                 if (!this.state.hashtags.includes(event.target.value)) {
-                    hashtags.push(event.target.value);
+                    hashtags.push(event.target.value.toLowerCase());
                 }
                 this.setState({ hashtags });
                 document.getElementById("hashtags").value = "";
@@ -130,17 +97,11 @@ class Question extends Component {
 
         event.preventDefault();
 
-        // console.log("You clicked=> " +  item);
-
         var hashtags = [...this.state.hashtags];
 
         hashtags.push(item);
         this.setState({ hashtags: hashtags, hashtagMatches: [] });
         document.getElementById("hashtags").value = "";
-
-
-
-
     }
 
     componentDidMount() {
@@ -161,11 +122,8 @@ class Question extends Component {
 
     }
 
-
-
     //Handle click on submit button and fetch data from Node API
     clickSubmit = (event) => {
-
 
         event.preventDefault();
 
@@ -221,6 +179,7 @@ class Question extends Component {
     }
 
 
+    //Delete hashtag when user clicks X icon
     deleteHashtag = (index) => (event) => {
 
         event.preventDefault();
@@ -235,7 +194,6 @@ class Question extends Component {
 
     render() {
 
-        // const {name,email,password,
         const { error, questionPosted, hashtags, hashtagMatches } = this.state;
 
         return (
@@ -252,6 +210,7 @@ class Question extends Component {
                     {this.formElement("title")}
                     {this.formElement("body")}
                     {this.formElement("hashtags")}
+
                     <ul className="list-group">
                         {hashtagMatches.map((matches, index) => {
                             return <li className="list-group-item" key={index} onClick={this.listItemClickListener(matches.toString())}>{matches}</li>
