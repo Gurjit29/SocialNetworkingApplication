@@ -39,7 +39,7 @@ export const isLoggedIn = () => {
                 email: "peter@gmail.com"
             }
          */
-        console.log(JSON.parse(localStorage.getItem("userInfo")).user._id)
+        // console.log(JSON.parse(localStorage.getItem("userInfo")).user._id)
 
         //return local storage info
         return JSON.parse(localStorage.getItem("userInfo"));

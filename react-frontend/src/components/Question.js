@@ -27,17 +27,41 @@ class Question extends Component {
 
         //to make errors disappear when user is typing
         this.setState({ error: "" })
+        // console.log("change");
 
-        if(name==="hashtags"){
-            var hashtags =[...this.state.hashtags];
+        // if(name==="hashtags"){
+        //     var hashtags =[...this.state.hashtags];
 
-            hashtags.push(event.target.value);
-            this.setState({hashtags})
+        //     hashtags.push(event.target.value);
+        //     this.setState({hashtags})
 
-        }
-        else
+        // }
+        // else
+        if(name!=="hashtags")
         this.setState({ [name.toString()]: event.target.value });
     }
+
+    pressEnterListener = (event) => {
+
+        if(event.which===13){
+            console.log(event.target.value);
+            if(event.target.value) {
+                
+                var hashtags =[...this.state.hashtags];
+
+              hashtags.push(event.target.value);
+                this.setState({hashtags});
+                document.getElementById("hashtags").value="";
+            }
+        }
+    
+
+    }
+
+    componentDidMount() {
+        document.getElementById("hashtags").addEventListener('keypress', this.pressEnterListener);
+        
+      }
 
     //Generic reusable template for form fields
     formElement = (name) => {
@@ -116,7 +140,7 @@ class Question extends Component {
     render() {
 
         // const {name,email,password,
-        const { error,questionPosted } = this.state;
+        const { error,questionPosted,hashtags } = this.state;
 
         return (
             <div className="container" style={{ 'width': '60%', 'marginTop': '20px' }}>
@@ -131,8 +155,22 @@ class Question extends Component {
                 <form id="question-form">
                     {this.formElement("title")}
                     {this.formElement("body")}
-                    {this.formElement("hashtags")}
+                {this.formElement("hashtags")} 
+                    
                 </form>
+               
+              {hashtags.map((hashtag) => {
+                return(  <div style={{'display':'inline'}}>
+                   <button type="button" class="btn btn-dark" style={{'marginBottom':'10px','marginRight':'10px'}}>{hashtag}
+                   <button type="button" class="close" aria-label="Close">
+                   </button>
+                   <span aria-hidden="true">&times;</span>
+                   </button>
+                   </div>)
+
+              })} 
+                
+                <br/><br/>
                 {error  && !questionPosted?
                 (
                     <button type="button" 
