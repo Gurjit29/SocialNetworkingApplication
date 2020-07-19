@@ -197,6 +197,17 @@ class Question extends Component {
     }
 
 
+    deleteHashtag = (index) => (event) => {
+
+        event.preventDefault();
+
+        let hashtags=[...this.state.hashtags];
+
+        hashtags.splice(index,1);
+
+        this.setState({hashtags});
+
+    }
 
     render() {
 
@@ -233,7 +244,7 @@ class Question extends Component {
                         <button type="button" className="btn btn-dark" style={{ 'marginBottom': '10px', 'marginRight': '10px' }}>{hashtag}
                             <span type="button" className="close" aria-label="Close">
                             </span>
-                            <span aria-hidden="true" style={{ 'padding': '10px' }}>&times;</span>
+                            <span aria-hidden="true" style={{ 'padding': '10px' }} onClick={this.deleteHashtag(index.toString())}>&times;</span>
                         </button>
                     </div>)
 
