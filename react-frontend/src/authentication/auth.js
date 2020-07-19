@@ -22,6 +22,24 @@ export const SignOut = () => {
 
 }
 
+export const getAllQuestions = () => {
+
+    return fetch(`http://localhost:8080/questions`, {
+            method: "GET",
+            // headers: {
+            //     Accept: "application/json",
+            //     "Content-Type": "application/json"
+            // },
+            // body: JSON.stringify(user)
+        })
+            .then(response => {
+                return response.json();
+            })
+            .catch(err => console.log(err))
+            
+
+}
+
 export const isLoggedIn = () => {
     if(typeof window == "undefined"){
         return false;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-import { isLoggedIn } from '../authentication/auth';
+import { isLoggedIn,getAllQuestions } from '../authentication/auth';
 
 class Question extends Component {
 
@@ -21,10 +21,8 @@ class Question extends Component {
 
     //Event Listener for input changes
     inputChangeListener = (name) => (event) => {
-
         //storing data in state in array
         // https://stackoverflow.com/questions/44519850/how-to-save-data-in-an-array-inside-state-in-react-js/44520155#:~:text=First%20create%20a%20copy%20of,let%20todos%20%3D%20%5B...
-
 
         //to make errors disappear when user is typing
         this.setState({ error: "" })
@@ -43,8 +41,25 @@ class Question extends Component {
         }
         else {
            
-            let hashtags = ["node", "react", "express", "tech"];
-            const inputValue = event.target.value;
+            let hashtags = ["node", "react", "express", "tech","npm","instagram","web app","coding","math","biology"];
+            // let hashtags = [];
+            // getAllQuestions()
+            // .then((data) => {
+
+            //     console.log("Data => ",data);
+            //     data.questions.map((question) => {
+
+            //         return questions.hashtags.map((hashtag) => {
+            //            return hashtags.push(hashtag);
+            //         })
+            //     })
+
+            //     //window.localStorage.clear();
+            // });
+
+            
+               const inputValue = event.target.value;
+            console.log("Input value is => "+inputValue);
 
 
             // https://www.geeksforgeeks.org/substring-check-in-javascript/#:~:text=Values%20using%20JavaScript%20%3F-,Substring%20check%20in%20JavaScript,This%20method%20is%20case%20sensitive.
@@ -56,22 +71,29 @@ class Question extends Component {
                 hashtags.map((hashtag) => {
                     // console.log("Hashtag => " + hashtag);
                     // console.log("InputVal => " + inputValue)
-                    const match = hashtag.includes(inputValue, 0);
+                   // const match = hashtag.includes(inputValue, 0);
+                   // const match = hashtag.indexOf(inputValue) >=0
+                   const match= hashtag.search(inputValue)>=0
+                   console.log("Match => "+match)
                     if (match) {
                         let hashtagMatches = [...this.state.hashtagMatches];
 
                         // for(var i=0;i<hashtagMatches.length;i++){
                         //     if(!(hashtagMatches[i].equals(hashtag))){
-                            console.log("State ==> ",this.state.hashtags);
-                            console.log("hashtag => ",hashtag);
+                            // console.log("State ==> ",this.state.hashtags);
+                            // console.log("hashtag => ",hashtag);
                            if(!this.state.hashtags.includes(hashtag)) {
                                 hashtagMatches.push(hashtag);
                             }
                                 const uniqueArr = new Set(hashtagMatches);
                                 hashtagMatches = [...uniqueArr];
                         this.setState({ hashtagMatches });
-                            
+                    } 
+                    else{
 
+                        console.log("No Match") ;
+                        console.log(this.setState.hashtagMatches);
+                        //  this.setState({ hashtagMatches: [] });
                     }
                     // console.log(match);
                 })
@@ -230,10 +252,7 @@ class Question extends Component {
                     {this.formElement("hashtags")}
                     <ul className="list-group">
                         {hashtagMatches.map((matches,index) => {
-
-
                             return <li className="list-group-item" key={index} onClick={this.listItemClickListener(matches.toString())}>{matches}</li>
-
                         })}
                     </ul>
 
