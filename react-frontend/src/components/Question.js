@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-import { isLoggedIn,getAllQuestions } from '../authentication/auth';
+import { isLoggedIn, getAllQuestions } from '../authentication/auth';
 
 class Question extends Component {
 
@@ -26,7 +26,7 @@ class Question extends Component {
 
         //to make errors disappear when user is typing
         this.setState({ error: "" })
-      
+
 
         // if(name==="hashtags"){
         //     var hashtags =[...this.state.hashtags];
@@ -40,66 +40,68 @@ class Question extends Component {
             this.setState({ [name.toString()]: event.target.value });
         }
         else {
-           
-            let hashtags = ["node", "react", "express", "tech","npm","instagram","web app","coding","math","biology"];
-            // let hashtags = [];
-            // getAllQuestions()
-            // .then((data) => {
 
-            //     console.log("Data => ",data);
-            //     data.questions.map((question) => {
+            const inputValue = event.target.value;
+            // let hashtags = ["node", "react", "express", "tech","npm","instagram","web app","coding","math","biology"];
+            let hashtags = [];
+            getAllQuestions()
+                .then((data) => {
 
-            //         return questions.hashtags.map((hashtag) => {
-            //            return hashtags.push(hashtag);
-            //         })
-            //     })
+                    let arr = data.questions;
+                    //    console.log(arr[12].hashtags[1]);
+                    arr.map((element) => {
+                        //console.log(element.hashtags);
+                        element.hashtags.map((tag) => {
+                            hashtags.push(tag)
+                        })
+                    });
 
-            //     //window.localStorage.clear();
-            // });
+                    console.log("~~~~~~~~~~~~~~~~~");
+                    console.log("Hashtags loaded from backend  =====> ", hashtags);
+                    
+                // });
 
-            
-               const inputValue = event.target.value;
-            console.log("Input value is => "+inputValue);
+
+                console.log(hashtags);
+            // const inputValue = event.target.value;
+            // console.log("Input value is => "+inputValue);
 
 
             // https://www.geeksforgeeks.org/substring-check-in-javascript/#:~:text=Values%20using%20JavaScript%20%3F-,Substring%20check%20in%20JavaScript,This%20method%20is%20case%20sensitive.
-            if (!event.target.value) {
+            if (!inputValue) {
 
                 this.setState({ hashtagMatches: [] });
 
             } else {
                 hashtags.map((hashtag) => {
-                    // console.log("Hashtag => " + hashtag);
-                    // console.log("InputVal => " + inputValue)
-                   // const match = hashtag.includes(inputValue, 0);
-                   // const match = hashtag.indexOf(inputValue) >=0
-                   const match= hashtag.search(inputValue)>=0
-                   console.log("Match => "+match)
+                    console.log("Hashtag => " + hashtag);
+                    console.log("InputVal => " + inputValue)
+                    // const match = hashtag.includes(inputValue, 0);
+                    // const match = hashtag.indexOf(inputValue) >=0
+                    const match = hashtag.search(inputValue) >= 0
+                    console.log("Match => " + match)
                     if (match) {
                         let hashtagMatches = [...this.state.hashtagMatches];
 
                         // for(var i=0;i<hashtagMatches.length;i++){
                         //     if(!(hashtagMatches[i].equals(hashtag))){
-                            // console.log("State ==> ",this.state.hashtags);
-                            // console.log("hashtag => ",hashtag);
-                           if(!this.state.hashtags.includes(hashtag)) {
-                                hashtagMatches.push(hashtag);
-                            }
-                                const uniqueArr = new Set(hashtagMatches);
-                                hashtagMatches = [...uniqueArr];
+                        // console.log("State ==> ",this.state.hashtags);
+                        // console.log("hashtag => ",hashtag);
+                        if (!this.state.hashtags.includes(hashtag)) {
+                            hashtagMatches.push(hashtag);
+                        }
+                        const uniqueArr = new Set(hashtagMatches);
+                        hashtagMatches = [...uniqueArr];
                         this.setState({ hashtagMatches });
-                    } 
-                    else{
-
-                        console.log("No Match") ;
-                        console.log(this.setState.hashtagMatches);
-                        //  this.setState({ hashtagMatches: [] });
                     }
-                    // console.log(match);
+                   
+                    
                 })
 
             }
 
+        });
+            //here
         }
     }
 
@@ -112,14 +114,14 @@ class Question extends Component {
 
                 var hashtags = [...this.state.hashtags];
 
-                console.log("state ==> ",hashtags);
-                console.log("event.target.value ",event.target.value);
-                if(!this.state.hashtags.includes(event.target.value)) {
-                hashtags.push(event.target.value);
+                console.log("state ==> ", hashtags);
+                console.log("event.target.value ", event.target.value);
+                if (!this.state.hashtags.includes(event.target.value)) {
+                    hashtags.push(event.target.value);
                 }
                 this.setState({ hashtags });
                 document.getElementById("hashtags").value = "";
-                 
+
             }
         }
     }
@@ -132,10 +134,10 @@ class Question extends Component {
 
         var hashtags = [...this.state.hashtags];
 
-                hashtags.push(item);
-                this.setState({ hashtags: hashtags,hashtagMatches: [] });
-                document.getElementById("hashtags").value = "";
-                
+        hashtags.push(item);
+        this.setState({ hashtags: hashtags, hashtagMatches: [] });
+        document.getElementById("hashtags").value = "";
+
 
 
 
@@ -223,11 +225,11 @@ class Question extends Component {
 
         event.preventDefault();
 
-        let hashtags=[...this.state.hashtags];
+        let hashtags = [...this.state.hashtags];
 
-        hashtags.splice(index,1);
+        hashtags.splice(index, 1);
 
-        this.setState({hashtags});
+        this.setState({ hashtags });
 
     }
 
@@ -251,7 +253,7 @@ class Question extends Component {
                     {this.formElement("body")}
                     {this.formElement("hashtags")}
                     <ul className="list-group">
-                        {hashtagMatches.map((matches,index) => {
+                        {hashtagMatches.map((matches, index) => {
                             return <li className="list-group-item" key={index} onClick={this.listItemClickListener(matches.toString())}>{matches}</li>
                         })}
                     </ul>
