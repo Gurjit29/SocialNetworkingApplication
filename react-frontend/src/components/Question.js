@@ -47,7 +47,7 @@ class Question extends Component {
                     arr.map((element) => {
                         element.hashtags.map((tag) => {
                             //only Load unique hashtags & ignore duplicates
-                            if (hashtags.indexOf(tag) == -1)
+                            if (hashtags.indexOf(tag) === -1)
                                 hashtags.push(tag)
                         })
                     });
@@ -58,11 +58,12 @@ class Question extends Component {
 
                         //Iterate over each hashtag in array to find if there is match
                         
-                        const match=hashtag.substring(0, inputValue.length) === inputValue
+                        const match=hashtag.substring(0, inputValue.length) === inputValue.toLowerCase()
 
                         if (match) {
                             let hashtagMatches = [...this.state.hashtagMatches];
 
+                            if(!this.state.hashtags.includes(hashtag))
                             hashtagMatches.push(hashtag);
                         
                             this.setState({ hashtagMatches });
