@@ -2,7 +2,7 @@ import React from 'react';
 
 const LandingPage = () => {
 
-    return <div className="jumbotron jumbotron-fluid">
+    return <div >
         <h2>Welcome to QA Engine App!</h2>
         <p>Feel free the explore the app. There are variety of things you can do here: </p>
         <ul>

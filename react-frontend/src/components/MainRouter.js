@@ -36,16 +36,17 @@ class MainRouter extends Component {
     render() {
         return (<React.Fragment>
         <Navbar loggedIn={this.state.loggedIn} toggleState={this.toggleState}/>
-        <div className="jumbotron" style={{'height':'100vh'}}>
+        <div >
         
         <Switch>
             <Route exact path="/" component= {LandingPage} />
             <Route exact path="/login" render={() => <Login toggleState={this.toggleState}/>} />
             <Route exact path="/register" render={() => <Register toggleState={this.toggleState}/>} />
+            <Route exact path="/questions" component={DisplayQuestions} />
         {this.state.loggedIn ?
          <Route exact path={`/question/new/${isLoggedIn().user._id}`} component={Question} />
-        : <Redirect to="/login" /> }
-        <Route exact path="/questions" component={DisplayQuestions} />
+        : <Redirect path="/login" /> }
+       
         </Switch>
         </div>
         </React.Fragment>
