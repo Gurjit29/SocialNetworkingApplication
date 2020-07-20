@@ -10,7 +10,9 @@ import LandingPage from './LandingPage';
 import Question from './Question';
 import { Component } from 'react';
 
+
 import {SignOut,isLoggedIn} from '../authentication/auth';
+import DisplayQuestions from './DisplayQuestions';
 
 class MainRouter extends Component {
 
@@ -43,6 +45,7 @@ class MainRouter extends Component {
         {this.state.loggedIn ?
          <Route exact path={`/question/new/${isLoggedIn().user._id}`} component={Question} />
         : <Redirect to="/login" /> }
+        <Route exact path="/questions" component={DisplayQuestions} />
         </Switch>
         </div>
         </React.Fragment>

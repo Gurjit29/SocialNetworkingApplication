@@ -46,6 +46,10 @@ class NavBar extends Component {
           </li>
           </React.Fragment>}
 
+          <li className="nav-item">
+                <Link className="nav-link" href=" # " to="/questions" >See asked Questions</Link>
+              </li>
+
         </ul>
       </div>
     </nav>
