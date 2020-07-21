@@ -13,6 +13,7 @@ import { Component } from 'react';
 
 import {SignOut,isLoggedIn} from '../authentication/auth';
 import DisplayQuestions from './DisplayQuestions';
+import DisplayOneQuestion from './DisplayOneQuestion';
 
 class MainRouter extends Component {
 
@@ -43,6 +44,7 @@ class MainRouter extends Component {
             <Route exact path="/login" render={() => <Login toggleState={this.toggleState}/>} />
             <Route exact path="/register" render={() => <Register toggleState={this.toggleState}/>} />
             <Route exact path="/questions" component={DisplayQuestions} />
+            <Route exact path="/question/:questionId" component={DisplayOneQuestion} />
         {this.state.loggedIn ?
          <Route exact path={`/question/new/${isLoggedIn().user._id}`} component={Question} />
         : <Redirect to="/login" /> }
