@@ -55,6 +55,7 @@ class Register extends Component {
         const { name, email, password } = this.state;
 
         const user = {
+            //upper case names
             name: name,
             email: email,
             password: password

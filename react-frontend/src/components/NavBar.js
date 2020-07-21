@@ -12,7 +12,7 @@ class NavBar extends Component {
   render() {
 
     return (<nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-      <Link className="navbar-brand" exact to="/" href=" # ">QA Engine App</Link>
+      <Link className="navbar-brand" exact="true" to="/" href=" # ">QA Engine App</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>

@@ -45,10 +45,10 @@ class Question extends Component {
 
                     let arr = data.questions;
                     arr.map((element) => {
-                        element.hashtags.map((tag) => {
+                        return element.hashtags.map((tag) => {
                             //only Load unique hashtags & ignore duplicates
                             if (hashtags.indexOf(tag) === -1)
-                                hashtags.push(tag)
+                                return hashtags.push(tag)
                         })
                     });
 

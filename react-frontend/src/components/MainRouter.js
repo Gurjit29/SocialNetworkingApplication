@@ -45,7 +45,7 @@ class MainRouter extends Component {
             <Route exact path="/questions" component={DisplayQuestions} />
         {this.state.loggedIn ?
          <Route exact path={`/question/new/${isLoggedIn().user._id}`} component={Question} />
-        : <Redirect path="/login" /> }
+        : <Redirect to="/login" /> }
        
         </Switch>
         </div>
