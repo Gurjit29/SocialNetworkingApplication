@@ -37,14 +37,10 @@ class DisplayOneQuestion extends Component{
        
     }
 
-
-    render() {
+    displayQuestion = () => {
 
        const {question,user,hashtags}=this.state;
-       
-
-
-       return <div className="container">
+       return( <div >
        <div  style={{ 'border': '2px solid black', 'margin': '10px', 'padding': '10px', 'borderRadius': '8px' }}>
        <h3>{question.title + "   "}
            <button type="button" className="btn btn-dark"><b>{"Posted By: " + user.name}</b></button>
@@ -59,7 +55,27 @@ class DisplayOneQuestion extends Component{
            })}
        </ul>
    </div> 
-   </div>
+   </div>)
+    }
+
+    commentTextBox = (name) => {
+
+       return <div className="form-group">
+            <label htmlFor="comment">Comment</label>
+            <input type="text" className="form-control" id="comment"
+            /><br/>
+            <button className="btn btn-dark">Post Comment</button>
+        </div>
+    }
+
+
+    render() {
+
+       
+       return <div className="container">
+           {this.displayQuestion()}
+           {this.commentTextBox()}
+       </div>
        
     }
 

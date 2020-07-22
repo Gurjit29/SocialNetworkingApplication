@@ -1,6 +1,7 @@
 var express=require('express');
 var Question=require('../models/question');
-const post = require('../../../SocialNetworkingApp/NodeAPI/models/post');
+const _ = require("lodash");
+
 
 exports.postQuestion= (req,res) => {
 
@@ -21,6 +22,56 @@ exports.postQuestion= (req,res) => {
     return res.status(200).json({question});
    }).populate("createdBy","_id name");
   
+} 
+
+exports.postComment = (req,res) => {
+
+    let question=req.question;
+
+    
+
+    // let questionsComments = [...question.comments];
+    // questionsComments.push(req.body);
+    // let questionBody=questions.comments;
+    
+    question=_.clone(req.question);
+ 
+
+   var commentsArr=_.concat(question.comments,req.body.comments);
+   console.log("---------999>>> ",commentsArr);
+    question.comments=commentsArr;
+
+    var commentersArr=_.concat(question.commentsBy,req.profile._id);
+    question.commentsBy=commentersArr;
+
+
+
+    question.save((err) => {
+        if(err){
+           return res.status(400).json({error:"Error! Could not post comment!"})
+        }
+        return res.status(200).json({question})
+    })
+
+}
+
+
+
+exports.storeQuestionInfo=(req,res,next,id) => {
+
+    Question.findById(id).exec((err,question) => {
+
+        if(err || !question){
+            return res.status(401).json({error:"You are not authorized to perform this action unfortunately..."});
+        }
+
+        //if user is found then append its information to "req" object
+        req.question= question;
+        
+    
+        next();
+    })
+
 }
 
 exports.getAllQuestions=(req,res) => {

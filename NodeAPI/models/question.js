@@ -20,6 +20,17 @@ const questionSchema=mongoose.Schema({
         type: String,
         trim: true
     }],
+    comments: [{
+        type: String,
+        trim: true,
+        ObjectId:mongoose.Schema.ObjectId
+        
+    }],
+    commentsBy: [{
+        type:mongoose.Schema.ObjectId,
+        ref:"User"
+
+    }],
     postedBy: {
           type: mongoose.Schema.ObjectId,
           ref: "User"
