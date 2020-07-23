@@ -6,7 +6,7 @@
 * Navigate to NodeAPI directory and type `npm run app` in terminal.
 * Navigate to react-frontend directory and type `npm start` in terminal.
 * Access React Frontend at `localhost:3000/`
-* Access Node API at `localhost:8080`
+* Access Node API at `localhost:8080`. Publicly available routes to view data are `localhost:8080/users` and `localhost:8080/questions`
 
 ## App Requirements =>
 * User can signup and login.
