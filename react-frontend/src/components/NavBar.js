@@ -34,14 +34,13 @@ class NavBar extends Component {
           <li className="nav-item">
             <Link className="nav-link" href=" # " to="/" onClick={() => this.props.toggleState("signout")}>Signout</Link>
           </li>
-          {/* <li className="nav-item">
-            <Link className="nav-link" href=" # " to="/">
-             
-            {isLoggedIn().user.name.charAt(0).toUpperCase() + isLoggedIn().user.name.slice(1)}'s Profile
-              </Link>
-          </li> */}
           <li className="nav-item">
-            <Link className="nav-link" href=" # " to={`question/new/${isLoggedIn().user._id}`}
+            <Link className="nav-link" href=" # " to={`/subscribe/${isLoggedIn().user._id}`}>
+              HashtagSubscriptions
+              </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" href=" # " to={`/question/new/${isLoggedIn().user._id}`}
             >Ask Question!</Link>
           </li>
           </React.Fragment>}

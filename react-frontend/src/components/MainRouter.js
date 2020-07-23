@@ -8,6 +8,7 @@ import Register from './Register';
 import Navbar from './NavBar';
 import LandingPage from './LandingPage'; 
 import Question from './Question';
+import SubscribeHashtags from './SubscribeHashtags';
 import { Component } from 'react';
 
 
@@ -44,7 +45,7 @@ class MainRouter extends Component {
             <Route exact path="/login" render={() => <Login toggleState={this.toggleState}/>} />
             <Route exact path="/register" render={() => <Register toggleState={this.toggleState}/>} />
             <Route exact path="/questions" component={DisplayQuestions} />
-            
+            <Route exact path="/subscribe/:userId" component={SubscribeHashtags} />
             <Route exact path="/question/:questionId" component={DisplayOneQuestion} />
         {this.state.loggedIn ?
          <Route exact path={`/question/new/${isLoggedIn().user._id}`} component={Question} />

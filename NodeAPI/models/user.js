@@ -17,6 +17,10 @@ const userSchema=mongoose.Schema({
         trim: true,
         required: true
     },
+    hashtagSubscriptions: [{
+        type: String,
+        trim: true
+    }],
     created: {
         type: Date,
         default: Date.now
