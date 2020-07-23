@@ -16,8 +16,7 @@ class DisplayOneQuestion extends Component {
         }
     }
 
-    componentDidMount() {
-
+    displayData = () => {
         getAllQuestions()
             .then((data) => {
 
@@ -50,9 +49,14 @@ class DisplayOneQuestion extends Component {
                     question: desiredQuestion, 
                     hashtags: desiredQuestion.hashtags, 
                     user: desiredQuestion.postedBy ,
-                    comments : commentsArr});
+                    comments : commentsArr.reverse()});
 
             });
+    }
+
+    componentDidMount() {
+
+        this.displayData();
 
     }
 
@@ -116,6 +120,8 @@ class DisplayOneQuestion extends Component {
                     console.log(data.question);
 
                     this.setState({comment:''})
+
+                    this.displayData();
 
 
                 }
