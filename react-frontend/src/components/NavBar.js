@@ -34,12 +34,12 @@ class NavBar extends Component {
           <li className="nav-item">
             <Link className="nav-link" href=" # " to="/" onClick={() => this.props.toggleState("signout")}>Signout</Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link className="nav-link" href=" # " to="/">
-              {/* Get name of logged in user and make first letter of name capital to display in Navigation Bar */}
+             
             {isLoggedIn().user.name.charAt(0).toUpperCase() + isLoggedIn().user.name.slice(1)}'s Profile
               </Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link className="nav-link" href=" # " to={`question/new/${isLoggedIn().user._id}`}
             >Ask Question!</Link>

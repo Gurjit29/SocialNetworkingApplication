@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { getAllQuestions ,isLoggedIn} from '../authentication/auth';
+import { getAllQuestions, isLoggedIn } from '../authentication/auth';
+
+import DisplayComments from './DisplayComments';
 
 
 class DisplayOneQuestion extends Component {
@@ -11,8 +13,8 @@ class DisplayOneQuestion extends Component {
             question: '',
             user: '',
             hashtags: [],
-            comment : '',
-            comments : []
+            comment: '',
+            comments: []
         }
     }
 
@@ -32,24 +34,25 @@ class DisplayOneQuestion extends Component {
                     return question._id === questionId;
                 });
 
-                
 
-                var commentsArr = desiredQuestion.commentsBy.map(function (x, i) { 
+
+                var commentsArr = desiredQuestion.commentsBy.map(function (x, i) {
                     //return [x, ar2[i]] 
                     return {
-                        "authorId":x._id,
-                        "authorName":x.name,
-                        "comment":desiredQuestion.comments[i]
+                        "authorId": x._id,
+                        "authorName": x.name,
+                        "comment": desiredQuestion.comments[i]
                     }
                 });
 
-                console.log("New Comments Arr ",commentsArr)
+                console.log("New Comments Arr ", commentsArr)
 
-                this.setState({ 
-                    question: desiredQuestion, 
-                    hashtags: desiredQuestion.hashtags, 
-                    user: desiredQuestion.postedBy ,
-                    comments : commentsArr.reverse()});
+                this.setState({
+                    question: desiredQuestion,
+                    hashtags: desiredQuestion.hashtags,
+                    user: desiredQuestion.postedBy,
+                    comments: commentsArr.reverse()
+                });
 
             });
     }
@@ -64,7 +67,7 @@ class DisplayOneQuestion extends Component {
 
         const { question, user, hashtags } = this.state;
         return (<div >
-            <div style={{ 'border': '2px solid black', 'margin': '10px', 'padding': '10px', 'borderRadius': '8px' }}>
+            <div  style={{ 'border': '2px solid black', 'margin': '10px', 'padding': '10px', 'borderRadius': '8px','background':'white' }}>
                 <h3>{question.title + "   "}
                     <button type="button" className="btn btn-dark"><b>{"Posted By: " + user.name}</b></button>
                 </h3>
@@ -81,93 +84,89 @@ class DisplayOneQuestion extends Component {
         </div>)
     }
 
-    
+
     postComment = (e) => {
 
         e.preventDefault();
-       // console.log("onClick = > ",this.state.comment);
+        // console.log("onClick = > ",this.state.comment);
 
-        if(this.state.comment) {
+        if (this.state.comment) {
 
-            
-        const userComment = {
-            comments : this.state.comment
-        }
 
-        console.log(JSON.stringify(userComment));
+            const userComment = {
+                comments: this.state.comment
+            }
 
-        fetch(`http://localhost:8080/comment/on/${this.state.question._id}/by/${isLoggedIn().user._id}`, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${isLoggedIn().token}`
-            },
-            body: JSON.stringify(userComment)
-        })
-            .then(response => {
-                return response.json();
+            console.log(JSON.stringify(userComment));
+
+            fetch(`http://localhost:8080/comment/on/${this.state.question._id}/by/${isLoggedIn().user._id}`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${isLoggedIn().token}`
+                },
+                body: JSON.stringify(userComment)
             })
-            .catch(err => console.log(err))
-            .then((data) => {
+                .then(response => {
+                    return response.json();
+                })
+                .catch(err => console.log(err))
+                .then((data) => {
 
 
-                if (data.error) {
-                    console.log(data.error)
-                }
-                else {
+                    if (data.error) {
+                        console.log(data.error)
+                    }
+                    else {
 
-                    console.log(data.question);
+                        console.log(data.question);
 
-                    this.setState({comment:''})
+                        this.setState({ comment: '' })
 
-                    this.displayData();
+                        this.displayData();
 
 
-                }
-            });
+                    }
+                });
         }
-       
+
     }
 
     userComment = (e) => {
 
         e.preventDefault();
-        this.setState({comment:e.target.value});
-        
+        this.setState({ comment: e.target.value });
+
     }
-    
+
 
     commentTextBox = (name) => {
 
         return <div className="form-group">
-            <label htmlFor="comment">Comment</label>
-            <input type="text" className="form-control" id="comment"  onChange={this.userComment} value={this.state.comment}
-            /><br />
-            <button className="btn btn-dark" onClick={this.postComment}>Post Comment</button>
+            <div className="card" style={{ 'marginBottom': '20px', 'border': '2px solid black', 'width': '98%', 'margin': 'auto' }}>
+                <div className="card-body">
+                    <label htmlFor="comment" className="btn btn-dark">Comment</label>
+                    <input type="text" className="form-control" id="comment" onChange={this.userComment} value={this.state.comment}
+                        style={{ 'border': '2px solid black' }} /><br />
+                    <button className="btn btn-dark" onClick={this.postComment}>Post Comment</button>
+                </div>
+            </div>
         </div>
     }
 
 
     render() {
-        
-        console.log("STate ==> ",this.state.comments);
+
+        console.log("STate ==> ", this.state.comments);
 
         return <div className="container">
             {this.displayQuestion()}
             {this.commentTextBox()}
-            {<h2>Comments</h2>}
+            {<h1 style={{ 'paddingLeft': '10px' }}><b>Comments</b></h1>}
             {/* {JSON.stringify(this.state.comments[0])}  */}
             {/* {JSON.parse(this.state.comments[0]).authorName} */}
-            {this.state.comments.map((comment) => {
-       return <div class="card">
-       <div class="card-body">
-        <p>{comment.comment}</p>
-        <button className="btn btn-dark"><b>Posted By {comment.authorName}</b></button>
-       </div>
-     </div>
-    }) 
-}
+            <DisplayComments comments={this.state.comments}/>
         </div>
 
     }

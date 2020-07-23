@@ -16,7 +16,7 @@ class DisplayQuestions extends Component {
 
         getAllQuestions()
             .then((data) => {
-                this.setState({ questions: data.questions });
+                this.setState({ questions: data.questions.reverse() });
               //  console.log(data.questions);
             });
     }
