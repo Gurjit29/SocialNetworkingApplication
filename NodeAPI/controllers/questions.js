@@ -37,8 +37,12 @@ exports.postComment = (req,res) => {
   // console.log("---------999>>> ",commentsArr);
     question.comments=commentsArr;
 
-    var commentersArr=_.concat(question.commentsBy,req.profile._id);
+    console.log("Data => ",question.commentsBy.name);
+    var commentersArr=_.concat(question.commentsBy,req.profile);
     question.commentsBy=commentersArr;
+    // question.commentsBy.name=req.profile.name;
+
+    console.log("--->",question.commentsBy);
 
 
 
@@ -47,7 +51,7 @@ exports.postComment = (req,res) => {
            return res.status(400).json({error:"Error! Could not post comment!"})
         }
         return res.status(200).json({question})
-    })
+    }).populate("commentsBy","_id name")
 
 }
 

@@ -1,4 +1,6 @@
 const mongoose=require('mongoose');
+const {ObjectId}=mongoose.Schema;
+
 
 const questionSchema=mongoose.Schema({
 
@@ -22,13 +24,12 @@ const questionSchema=mongoose.Schema({
     }],
     comments: [{
         type: String,
-        trim: true,
-        ObjectId:mongoose.Schema.ObjectId
+        trim: true
         
     }],
     commentsBy: [{
-        type:mongoose.Schema.ObjectId,
-        ref:"User"
+        id:String,
+        name: String
 
     }],
     postedBy: {

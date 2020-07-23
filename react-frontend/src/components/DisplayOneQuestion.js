@@ -11,7 +11,8 @@ class DisplayOneQuestion extends Component {
             question: '',
             user: '',
             hashtags: [],
-            comment : ''
+            comment : '',
+            comments : []
         }
     }
 
@@ -32,8 +33,24 @@ class DisplayOneQuestion extends Component {
                     return question._id === questionId;
                 });
 
+                
 
-                this.setState({ question: desiredQuestion, hashtags: desiredQuestion.hashtags, user: desiredQuestion.postedBy });
+                var commentsArr = desiredQuestion.commentsBy.map(function (x, i) { 
+                    //return [x, ar2[i]] 
+                    return {
+                        "authorId":x._id,
+                        "authorName":x.name,
+                        "comment":desiredQuestion.comments[i]
+                    }
+                });
+
+                console.log("New Comments Arr ",commentsArr)
+
+                this.setState({ 
+                    question: desiredQuestion, 
+                    hashtags: desiredQuestion.hashtags, 
+                    user: desiredQuestion.postedBy ,
+                    comments : commentsArr});
 
             });
 
@@ -127,11 +144,24 @@ class DisplayOneQuestion extends Component {
 
 
     render() {
-
+        
+        console.log("STate ==> ",this.state.comments);
 
         return <div className="container">
             {this.displayQuestion()}
             {this.commentTextBox()}
+            {<h2>Comments</h2>}
+            {/* {JSON.stringify(this.state.comments[0])}  */}
+            {/* {JSON.parse(this.state.comments[0]).authorName} */}
+            {this.state.comments.map((comment) => {
+       return <div class="card">
+       <div class="card-body">
+        <p>{comment.comment}</p>
+        <button className="btn btn-dark"><b>Posted By {comment.authorName}</b></button>
+       </div>
+     </div>
+    }) 
+}
         </div>
 
     }
