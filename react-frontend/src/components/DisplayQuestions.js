@@ -17,7 +17,7 @@ class DisplayQuestions extends Component {
         getAllQuestions()
             .then((data) => {
                 this.setState({ questions: data.questions });
-                console.log(data.questions);
+              //  console.log(data.questions);
             });
     }
 

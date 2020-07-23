@@ -29,16 +29,12 @@ exports.postComment = (req,res) => {
     let question=req.question;
 
     
-
-    // let questionsComments = [...question.comments];
-    // questionsComments.push(req.body);
-    // let questionBody=questions.comments;
-    
     question=_.clone(req.question);
  
 
+    console.log("Body is ==> ",req.body.comments);
    var commentsArr=_.concat(question.comments,req.body.comments);
-   console.log("---------999>>> ",commentsArr);
+  // console.log("---------999>>> ",commentsArr);
     question.comments=commentsArr;
 
     var commentersArr=_.concat(question.commentsBy,req.profile._id);
