@@ -44,6 +44,7 @@ class MainRouter extends Component {
             <Route exact path="/login" render={() => <Login toggleState={this.toggleState}/>} />
             <Route exact path="/register" render={() => <Register toggleState={this.toggleState}/>} />
             <Route exact path="/questions" component={DisplayQuestions} />
+            
             <Route exact path="/question/:questionId" component={DisplayOneQuestion} />
         {this.state.loggedIn ?
          <Route exact path={`/question/new/${isLoggedIn().user._id}`} component={Question} />
