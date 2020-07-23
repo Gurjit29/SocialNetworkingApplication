@@ -3,8 +3,8 @@
 
 ## Instructions for running the App =>
 * Clone to repository.
-* Navigate to NodeAPI directory/ and type `npm run app` in terminal.
-* Navigate to react-frontend/ directory and type `npm start` in terminal.
+* Navigate to NodeAPI directory and type `npm run app` in terminal.
+* Navigate to react-frontend directory and type `npm start` in terminal.
 * Access React Frontend at `localhost:3000/`
 * Access Node API at `localhost:8080`
 
