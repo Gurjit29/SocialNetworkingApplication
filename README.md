@@ -1,6 +1,8 @@
 # SocialNetworkingApp
 #### A web-based application using MERN (Mongo db, Express, Node, and React) stack inspired by core functionalities of Twitter (hashtags), and Stack Overflow (Comments, Post Question).
 
+
+
 ## Instructions for running the App =>
 * Clone to repository.
 * Navigate to NodeAPI directory and type `npm run app` in terminal.
@@ -20,5 +22,6 @@
 * Node/Express for backend - JWT authentication, routes, REST API
 * Mongo DB for data storage - question and user model
 * Bootstrap for styling
-* Github for version constrol 
+* Github for version control
+
 
