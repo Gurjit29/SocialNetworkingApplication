@@ -1,9 +1,14 @@
 # SocialNetworkingApp
 #### A web-based application using MERN (Mongo db, Express, Node, and React) stack inspired by core functionalities of Twitter (hashtags), and Stack Overflow (Comments, Post Question).
 
+## Register 
 ![](https://github.com/Gurjit29/QAEngineApp/blob/b7fbb1f434c5c49a5ab7ae72f99680f1b044b4c8/react-frontend/register.gif)
+## Login
 ![](https://github.com/Gurjit29/QAEngineApp/blob/b7fbb1f434c5c49a5ab7ae72f99680f1b044b4c8/react-frontend/login.gif)
+## Post Question with hashtags
 ![](https://github.com/Gurjit29/QAEngineApp/blob/b7fbb1f434c5c49a5ab7ae72f99680f1b044b4c8/react-frontend/ask_question.gif)
+
+## View questions and write comments
 ![](https://github.com/Gurjit29/QAEngineApp/blob/b7fbb1f434c5c49a5ab7ae72f99680f1b044b4c8/react-frontend/questions.gif)
 
 ## Instructions for running the App =>
