@@ -4,7 +4,7 @@
 ![](https://github.com/Gurjit29/QAEngineApp/blob/b7fbb1f434c5c49a5ab7ae72f99680f1b044b4c8/react-frontend/register.gif)
 ![](https://github.com/Gurjit29/QAEngineApp/blob/b7fbb1f434c5c49a5ab7ae72f99680f1b044b4c8/react-frontend/login.gif)
 ![](https://github.com/Gurjit29/QAEngineApp/blob/b7fbb1f434c5c49a5ab7ae72f99680f1b044b4c8/react-frontend/ask_question.gif)
-![] (https://github.com/Gurjit29/QAEngineApp/blob/b7fbb1f434c5c49a5ab7ae72f99680f1b044b4c8/react-frontend/questions.gif)
+![](https://github.com/Gurjit29/QAEngineApp/blob/b7fbb1f434c5c49a5ab7ae72f99680f1b044b4c8/react-frontend/questions.gif)
 
 ## Instructions for running the App =>
 * Clone to repository.
