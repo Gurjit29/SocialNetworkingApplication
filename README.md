@@ -11,7 +11,7 @@
 ![](https://github.com/Gurjit29/QAEngineApp/blob/b7fbb1f434c5c49a5ab7ae72f99680f1b044b4c8/react-frontend/questions.gif)
 
 ## Instructions for running the App =>
-* Clone to repository.
+* Clone the repository.
 * Navigate to NodeAPI directory and type `npm run app` in terminal.
 * Navigate to react-frontend directory and type `npm start` in terminal.
 * Access React Frontend at `localhost:3000/`
