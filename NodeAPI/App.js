@@ -7,7 +7,7 @@ var expressValidator=require('express-validator');
 const cors=require('cors');
 var dotenv=require('dotenv');
 
-dotenv.config();
+dotenv.config({path: './config.env'});
 
 var userRoutes=require('./routes/userRoutes');
 var authRoutes=require('./routes/authRoutes');
